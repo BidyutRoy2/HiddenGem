@@ -150,7 +150,7 @@
 <body>
 
 <header>
-    TomketLovers
+    Hidden Gem
 </header>
 
 <main class="container">
@@ -175,16 +175,16 @@
 </footer>
 
 <script>
-    // Fungsi untuk mencari item berdasarkan input pencarian
+    // Function to search for items based on search input
     function filterItems() {
         const searchInput = document.getElementById('searchInput').value.toLowerCase();
         const items = document.querySelectorAll('.flex-item');
         
         items.forEach(item => {
             if (item.textContent.toLowerCase().includes(searchInput)) {
-                item.style.display = "flex"; // Tampilkan item jika cocok
+                item.style.display = "flex"; // Show items if they match
             } else {
-                item.style.display = "none"; // Sembunyikan item jika tidak cocok
+                item.style.display = "none"; // Hide items if they don't match
             }
         });
     }
@@ -204,7 +204,7 @@
         }
     }
 
-    // Sembunyikan semua item setelah yang ke-9
+    // Hide all items after the 9th
     window.onload = () => {
         const items = document.querySelectorAll('.flex-item');
         for (let i = itemsPerPage; i < items.length; i++) {
