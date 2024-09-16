@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hidden Gem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        header {
+            background-color: #5f19c0;
+            font-weight: bold;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        footer {
+            background-color: #5f19c0;
+            font-weight: bold;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        footer p {
+            font-weight: lighter;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flex-item {
+            background-color: #5f19c0;
+            color: white;
+            width: 400px;
+            height: 200px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .flex-item:hover {
+            background-color: #0056b3;
+        }
+
+        .load-more-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .load-more-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media query for tablet screens */
+        @media (max-width: 1024px) {
+            .flex-item {
+                width: 400px;
+            }
+        }
+
+        /* Media query for mobile screens */
+        @media (max-width: 768px) {
+            .flex-item {
+                width: 300px;
+            }
+        }
+
+        .footer-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    TomketLovers
+</header>
+
+<main class="container">
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Cari item..." oninput="filterItems()">
+    </div>
+
+    <div id="flexContainer" class="flex-container">
+        <a href="/scroll-marks/index.html" class="flex-item">scroll-marks</a>
+        <a href="/catizen-predictor/index.html" class="flex-item">catizen-predictor</a>
+        <a href="/meteora-points/index.html" class="flex-item">meteora-points</a>
+        <a href="/usual-points-calc/index.html" class="flex-item">usual-points-calc</a>
+    </div>
+
+    <button id="loadMoreBtn" class="load-more-btn" onclick="loadMore()">Selanjutnya</button>
+</main>
+
+<footer>
+    <div class="footer-links">
+        <p> Join Hidden Gem Telegram:</p>
+        <ul>
+            <li><a href="https://t.me/hiddengemnews" target="_blank">Telegram</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script>
+    // Fungsi untuk mencari item berdasarkan input pencarian
+    function filterItems() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const items = document.querySelectorAll('.flex-item');
+        
+        items.forEach(item => {
+            if (item.textContent.toLowerCase().includes(searchInput)) {
+                item.style.display = "flex"; // Tampilkan item jika cocok
+            } else {
+                item.style.display = "none"; // Sembunyikan item jika tidak cocok
+            }
+        });
+    }
+
+    let currentIndex = 6;
+    const itemsPerPage = 6;
+
+    function loadMore() {
+        const items = document.querySelectorAll('.flex-item');
+        for (let i = currentIndex; i < currentIndex + itemsPerPage && i < items.length; i++) {
+            items[i].style.display = "flex";
+        }
+        currentIndex += itemsPerPage;
+
+        if (currentIndex >= items.length) {
+            document.getElementById('loadMoreBtn').style.display = 'none';
+        }
+    }
+
+    // Sembunyikan semua item setelah yang ke-9
+    window.onload = () => {
+        const items = document.querySelectorAll('.flex-item');
+        for (let i = itemsPerPage; i < items.length; i++) {
+            items[i].style.display = "none";
+        }
+    };
+</script>
+
+</body>
+</html>
